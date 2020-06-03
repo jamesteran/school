@@ -1,0 +1,57 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<p:dialog modal="true" dynamic="true" widgetVar="widAdmVisitasCampo"
+		id="idDlgVisitasCampo">
+
+		<f:facet name="header">
+			<p:outputLabel value="Agregar / Editar" />
+		</f:facet>
+
+		<p:outputPanel>
+
+			<h:panelGrid columns="2">
+				<p:outputLabel value="#{lbl['asignatura.nombre']}" styleClass="textoOscuro" />
+				<p:selectOneMenu value="#{d5VisitasCampoController.asignatura.valor}" 
+					id="somMateriaD5" filter="true" filterMatchMode="contains">
+					<f:selectItem itemLabel="#{tmpl['etiqueta.seleccione']}"
+						itemValue="#{null}" noSelectionOption="true" />
+					<f:selectItems value="#{d5VisitasCampoController.lstMaterias}" 
+						var="mat" itemLabel="#{mat.codigoMateriaConcatenado} - #{mat.nombreMateria}" 
+						itemValue="#{mat.idAreaEstudio}-#{mat.codMateria}" />
+					<p:ajax />
+				</p:selectOneMenu>
+
+				<p:outputLabel value="#{lbl['paralelo.nombre']}" styleClass="textoOscuro" />
+				<p:inputText value="#{d5VisitasCampoController.paralelo.valor}"
+					maxlength="5" onkeyup="value=value.toUpperCase()"  />
+
+				<p:outputLabel value="Lugar" styleClass="textoOscuro" />
+				<p:inputText value="#{d5VisitasCampoController.lugar.valor}" 
+					onkeyup="value = value.replace(/[^0-9a-zA-Z]/g,'');" styleClass="upperCase"
+					onblur="value = value.toUpperCase();" 
+					maxlength="200" />
+			</h:panelGrid>
+
+
+			<br />
+			<center>
+				<p:commandButton id="btnGuardarVisitasCampo" value="Guardar"
+					action="#{d5VisitasCampoController.guardarInformacionVisitasCampo()}"
+					update=":#{p:component('tblVisitasCampo')} :#{p:component('dlgMsg')}"
+					styleClass="botonGeneralAuto botonNormal">
+				</p:commandButton>
+
+				<p:commandButton value="#{tmpl['boton.cancelar']}"
+					oncomplete="PF('widAdmVisitasCampo').hide();"
+					styleClass="ui-confirmdialog-no botonGeneralAuto botonNormal">
+					<p:ajax resetValues="true" />
+				</p:commandButton>
+			</center>
+
+		</p:outputPanel>
+	</p:dialog>
+</ui:composition>

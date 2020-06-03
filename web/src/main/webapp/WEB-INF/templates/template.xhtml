@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                template="/admin.xhtml">
+
+    <ui:define name="head">
+        <title>Joseph de Jussieu</title>
+        <link rel="shortcut icon" type="image/x-icon" href="#{resource['images/logo.ico']}"/>
+        <!-- <link rel="shortcut icon" type="image/x-icon" href="#{resource['favicon/favicon-16x16.png']}" sizes="16x16"/>
+        <link rel="shortcut icon" type="image/x-icon" href="#{resource['favicon/favicon-32x32.png']}" sizes="32x32"/>
+        <link rel="shortcut icon" type="image/x-icon" href="#{resource['favicon/favicon-96x96.png']}" sizes="96x96"/> -->
+        <link rel="manifest" href="manifest.json"/>
+        <meta name="theme-color" content="#444"/>
+        <meta name="mobile-web-app-capable" content="yes"/>
+        <f:loadBundle var="msg" basename="ec/edu/ecole/messages" />
+        <f:loadBundle var="lbl" basename="ec/edu/ecole/labels" />
+        <f:loadBundle var="tpl" basename="ec.edu.ecole.template" />
+        <h:outputStylesheet library="css" name="starter.css"/>
+        <!-- <h:outputStylesheet library="css" name="cssLayout.css"/> -->
+        <script type="text/javascript">
+        	$(document).ready(function() {		
+        	 	$('#link-home').hide();
+        	});
+          // PF('link-home').jq.hide();
+          // $('[id="#{p:component('link-home')}"]').hide();
+          
+	                
+	    </script>
+	    <p:idleMonitor onactive="PF('sessionTimeOutDialog').show()" timeout="#{session.maxInactiveInterval * 1000}" />
+	    <p:dialog id="timeOutDialog"
+			header="Sesión terminada"
+			widgetVar="sessionTimeOutDialog" modal="true" fixedCenter="true"
+			closable="false" width="400" visible="false" draggable="false"
+			resizable="false">
+			<h:outputText value="Su sesión ha caducado" />
+			<br></br>
+			<br></br>
+			<center>
+				<input id="confirmBackToLogin" type="button"
+					value="Aceptar"
+					class="botonGeneralAuto botonNormal" style="width: 25% !important"
+					onclick="window.location='#{facesContext.externalContext.requestContextPath}/log_in.xhtml';" />
+			</center>
+		</p:dialog>
+	    
+    </ui:define>
+
+    <ui:define name="logo">
+        Joseph de Jussieu
+    </ui:define>
+
+    <ui:define name="logo-mini">
+        <p:graphicImage value="/resources/images/logo_red.png" width="40px" height="40px"/>
+    </ui:define>
+
+     <ui:define name="menu">
+         <ui:include src="#{loginBean.menu}"/>
+     </ui:define>
+
+    <ui:define name="top-menu">
+        <ui:include src="/includes/top-bar.xhtml"/>
+    </ui:define>
+    
+    <!-- below is just an example on how to define more tabs for control sidebar --> 
+    <ui:define name="controlsidebar-tabs">
+        <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+        <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+    </ui:define>
+     
+   	<ui:define name="controlsidebar-content">
+        <ui:include src="/includes/controlsidebar-tabs-content.xhtml"/>
+    </ui:define>
+
+
+	<ui:define name="footer">
+		<a target="_blank" href="#"> Copyright (C) 2019</a>
+		<div class="pull-right" style="color: black;">
+			<i>#{lbl['app.version']}</i>
+		</div>
+		<!-- <h:outputScript library="js" name="starter.js" target="head"/> -->
+
+	</ui:define>
+	
+	
+</ui:composition>

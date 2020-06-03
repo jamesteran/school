@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+  <body>
+
+    <ui:composition template="#{layoutMB.template}">
+
+      <ui:define name="title">
+        Administración Home
+      </ui:define>
+
+      <ui:define name="body">
+        <h1 class="pgheader" style="text-align: center;border: none;">Bienvenido al panel de administración</h1>
+        <h:panelGrid columns="3" cellpadding="20">
+          <h:link outcome="student.xhtml" style="display: block;background-color: white;height: 170px;">
+            <p:graphicImage value="../../resources/images/student.png"/>
+            <h2 style="text-align: center;margin: 0;">Estudiante</h2>
+          </h:link>
+          <h:link outcome="teacher.xhtml" style="display: block;background-color: white;height: 170px;">
+            <p:graphicImage value="../../resources/images/teacher.png"/>
+            <h2 style="text-align: center;margin: 0;">Profesor</h2>
+          </h:link>
+          
+          <h:link outcome="acyear.xhtml">
+            <p:graphicImage value="../../resources/images/academics.jpg"/>
+          </h:link>
+          <h:link outcome="registration.xhtml">
+            <p:graphicImage value="../../resources/images/admission.jpg"/>            
+          </h:link>
+          <h:link outcome="classRoutine.xhtml">
+            <p:graphicImage value="../../resources/images/timetable.png"/>
+          </h:link>
+
+        </h:panelGrid>
+      </ui:define>
+
+    </ui:composition>
+
+  </body>
+</html>

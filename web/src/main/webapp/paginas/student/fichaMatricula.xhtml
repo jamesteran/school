@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+
+
+
+	<ui:composition template="#{layoutMB.template}">
+		<ui:define name="title">
+        	Matrícula del Estudiante
+      	</ui:define>
+	
+	
+	
+		<ui:define name="body">
+			<f:view>
+			<h:form id="mainForm" styleClass="anchoPantalla">
+				<script>
+					function showStatus() {
+						PF('statusDialog').show();
+						timedCount();
+					}
+					
+					function hideStatus() {
+						PF('statusDialog').hide();
+					}
+					
+					function detectaCookie() {
+						var existe = document.cookie.indexOf('descargaFileJsfNoAjax=');
+						if (existe >= 0) {
+							document.cookie = 'descargaFileJsfNoAjax=-1;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+							return  true;
+						}
+					}
+					function timedCount() {
+						if(detectaCookie()){
+							clearTimeout(t);
+							hideStatus();
+							return;
+						}
+						else {
+							var t = setTimeout(function(){ timedCount() }, 1000);
+						}
+					}
+					</script>
+				<br />
+
+				<p:panel header="REPORTES" style="text-align:center">
+					<br />
+					<h:outputText styleClass="negrilla"
+						value="Por favor si su ficha de matricula no se visualiza, precione el boton Generar ficha:" />
+					<br />
+						<h:outputText styleClass="negrilla" 
+							value="Los reportes en Jasper sobre el Data Ware House deben tener parámetros de generación"/>	
+					<br />
+					<br />
+					<br />
+
+					<center>
+						<p:panelGrid columns="2" columnClasses="ute-etiquetas,">
+							
+
+						</p:panelGrid>
+						<br />
+
+						
+						<p:commandButton id="diVisualizarReporteMatriculas" ajax="false"
+							value="Visualizar Reporte Matriculas" styleClass="ui-priority-primary"
+							actionListener="#{reporteController.visualizarReporteMatriculas()}"
+							onclick="showStatus();" />
+							
+					</center>
+				</p:panel>
+					
+				<p:panel>
+					<pe:documentViewer height="500" value="#{reporteController.content}"/>
+				</p:panel>
+			</h:form>
+			</f:view>
+		</ui:define>
+	</ui:composition>
+
+</html>

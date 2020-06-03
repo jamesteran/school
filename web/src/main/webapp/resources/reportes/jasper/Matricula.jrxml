@@ -1,0 +1,1014 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Matriculas" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c66dad99-9547-429a-b4e9-e7d888aeabd3">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+	<parameter name="STD_ID" class="java.lang.Integer"/>
+	<parameter name="ACY_ID" class="java.lang.Integer"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[-- ---------------------------------------------------
+ 
+-- ---------------------------------------------------
+ SELECT
+	DISTINCT ssi.std_id AS std_id,
+	ssi.id_number AS std_cedula,
+	ssi.first_name AS std_nombres,
+	ssi.last_name AS std_apellidos,
+	ssi.std_name AS std_nombrecompleto,
+	ssi.std_zona AS std_zona,
+	ssi.std_sector AS std_sector,
+	pa.parroquia_name AS std_parroquia,
+	ssi.std_vive_con AS std_vivecon,
+	ssi.std_age AS std_edad,
+	ssi.std_gender AS std_genero,
+	ssi.std_dob AS std_fecnacimiento,
+	usstd.user_photo AS st_foto,
+	ssi.std_language AS std_idioma,
+	ssi.std_nac AS std_nacionalidad,
+	ssi.std_birth_place AS std_lugarnaci,
+	ssi.std_phone AS std_telefono,
+	ssi.std_mobile AS std_celular,
+	ssi.std_siblings AS std_hermanos,
+	ssi.std_sib_place AS std_lugarhermano,
+	ssi.std_sib_in_sch AS std_hermanosescuela,
+	ssi.std_email AS std_email,
+	ssi.std_dir AS std_direccion,
+	ssi.std_dir_ref AS std_referencia,
+	ssi.std_color_casa AS std_colorcasa,
+	ssi.std_piso_casa AS std_pisocasa,
+	ssi.std_huerfano AS std_huerfano,
+	papa.id_number AS papa_cedula,
+	papa.first_name AS papa_nombres,
+	papa.last_name AS papa_apellidos,
+	papa.parent_addr AS papa_direccion,
+	papa.parent_phone AS papa_telefono,
+	papa.parent_mobil AS papa_celular,
+	papa.parent_email AS papa_email,
+	papa.parent_nac AS papa_nacionalidad,
+	papa.blood_grp AS papa_typosangre,
+	papa.civil_state AS papa_estadocivil,
+	papa.parent_gender AS papa_genero,
+	papha.parroquia_name AS papa_parroquia,
+	papa.education_level AS papa_niveleduca,
+	papa.degree_title AS papa_titulo,
+	papa.work_place AS papa_lugartrabajo,
+	papa.work_charge AS papa_cargo,
+	papa.work_phone AS papa_teleftrabajo,
+	papa.work_phone_ext AS papa_extension,
+	papa.work_dir AS papa_dirtrabajo,
+	papa.parent_ruc AS papa_ruc,
+	papa.parent_ocupacion AS papa_ocupacion,
+	papa.profesion AS papa_profesion,
+	papa.rep_legal AS papa_esreplegal,
+	papa.ret_student AS papa_retirarest,
+	uspa.user_photo AS papa_foto,
+	ptyPa.prntype_name AS papa_tipopadre,
+	mama.id_number AS mama_cedula,
+	mama.first_name AS mama_nombres,
+	mama.last_name AS mama_apellidos,
+	mama.parent_addr AS mama_direccion,
+	mama.parent_phone AS mama_telefono,
+	mama.parent_mobil AS mama_celular,
+	mama.parent_email AS mama_email,
+	mama.parent_nac AS mama_nacionalidad,
+	mama.blood_grp AS mama_tiposangre,
+	mama.civil_state AS mama_estadocivil,
+	mama.parent_gender AS mama_genero,
+	pamom.parroquia_name AS mama_parroquia,
+	mama.education_level AS mama_niveleduca,
+	mama.degree_title AS mama_titulo,
+	mama.work_place AS mama_lugartrabajo,
+	mama.work_charge AS mama_cargo,
+	mama.work_phone AS mama_teleftrabajo,
+	mama.work_phone_ext AS mama_extension,
+	mama.work_dir AS mama_dirtrabajo,
+	mama.parent_ruc AS mama_ruc,
+	mama.parent_ocupacion AS mama_ocupacion,
+	mama.profesion AS mama_profesion,
+	mama.rep_legal AS mama_replegal,
+	mama.ret_student AS mama_retirarest,
+	usma.user_photo AS mama_foto,
+	cla.class_name AS std_curso,
+	cla.class_desc AS std_cursoecua,
+	sec.section_name AS std_paralelo,
+	ptyma.prntype_name AS mama_tipopadre,
+	ec.envcli_ruc AS fac_ruc,
+	ec.envcli_razon_social AS fac_razonsocial,
+	ec.envcli_addr AS fac_direccion,
+	ec.envcli_phone AS fac_telefono,
+	ec.envcli_mobil AS fac_celular,
+	ec.envcli_email AS fac_email,
+	sr.reg_cod AS reg_codigomat,
+	sr.acyid AS reg_id
+FROM
+	sch_student_info ssi
+LEFT JOIN sch_parent papa ON
+	ssi.pha_id = papa.parent_id
+LEFT JOIN sch_parroquia paPha ON
+	papa.parroquia_id = paPha.parroquia_id
+LEFT JOIN sch_user usPa ON
+	papa.user_id = usPa.user_id
+LEFT JOIN sch_parent_type ptyPa ON
+	papa.prntype_id = ptyPa.prntype_id
+LEFT JOIN sch_parent mama ON
+	ssi.mom_id = mama.parent_id
+LEFT JOIN sch_parroquia paMom ON
+	mama.parroquia_id = paMom.parroquia_id
+LEFT JOIN sch_user usMa ON
+	mama.user_id = usMa.user_id
+LEFT JOIN sch_parent_type ptyMa ON
+	mama.prntype_id = ptyMa.prntype_id
+LEFT JOIN sch_envoice_client ec ON
+	ssi.std_id = ec.std_id
+LEFT JOIN sch_std_registration sr ON
+	ssi.std_id = sr.std_id
+LEFT JOIN sch_parroquia pa ON
+	ssi.parroquia_id = pa.parroquia_id
+LEFT JOIN sch_user usStd ON
+	ssi.user_id = usstd.user_id
+LEFT JOIN sch_section_name sec ON sr.section_id = sec.section_id 
+LEFT JOIN sch_class_name cla ON sec.class_id  = cla.class_id 
+WHERE
+	ssi.std_id = $P{STD_ID} 
+	AND sr.acyid =  $P{ACY_ID}]]>
+	</queryString>
+	<field name="std_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="std_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_student_info"/>
+	</field>
+	<field name="std_cedula" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="std_cedula"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_student_info"/>
+	</field>
+	<field name="std_nombres" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="std_nombres"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_student_info"/>
+	</field>
+	<field name="std_apellidos" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="std_apellidos"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_student_info"/>
+	</field>
+	<field name="std_nombrecompleto" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="std_nombrecompleto"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_student_info"/>
+	</field>
+	<field name="std_zona" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="std_zona"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_student_info"/>
+	</field>
+	<field name="std_sector" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="std_sector"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_student_info"/>
+	</field>
+	<field name="std_parroquia" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="std_parroquia"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parroquia"/>
+	</field>
+	<field name="std_vivecon" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="std_vivecon"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_student_info"/>
+	</field>
+	<field name="std_edad" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="std_edad"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_student_info"/>
+	</field>
+	<field name="std_genero" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="std_genero"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_student_info"/>
+	</field>
+	<field name="std_fecnacimiento" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="std_fecnacimiento"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_student_info"/>
+	</field>
+	<field name="st_foto" class="java.awt.Image">
+		<property name="com.jaspersoft.studio.field.label" value="st_foto"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_user"/>
+	</field>
+	<field name="std_idioma" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="std_idioma"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_student_info"/>
+	</field>
+	<field name="std_nacionalidad" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="std_nacionalidad"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_student_info"/>
+	</field>
+	<field name="std_lugarnaci" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="std_lugarnaci"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_student_info"/>
+	</field>
+	<field name="std_telefono" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="std_telefono"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_student_info"/>
+	</field>
+	<field name="std_celular" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="std_celular"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_student_info"/>
+	</field>
+	<field name="std_hermanos" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="std_hermanos"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_student_info"/>
+	</field>
+	<field name="std_lugarhermano" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="std_lugarhermano"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_student_info"/>
+	</field>
+	<field name="std_hermanosescuela" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="std_hermanosescuela"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_student_info"/>
+	</field>
+	<field name="std_email" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="std_email"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_student_info"/>
+	</field>
+	<field name="std_direccion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="std_direccion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_student_info"/>
+	</field>
+	<field name="std_referencia" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="std_referencia"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_student_info"/>
+	</field>
+	<field name="std_colorcasa" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="std_colorcasa"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_student_info"/>
+	</field>
+	<field name="std_pisocasa" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="std_pisocasa"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_student_info"/>
+	</field>
+	<field name="std_huerfano" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="std_huerfano"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_student_info"/>
+	</field>
+	<field name="papa_cedula" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="papa_cedula"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="papa_nombres" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="papa_nombres"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="papa_apellidos" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="papa_apellidos"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="papa_direccion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="papa_direccion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="papa_telefono" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="papa_telefono"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="papa_celular" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="papa_celular"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="papa_email" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="papa_email"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="papa_nacionalidad" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="papa_nacionalidad"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="papa_typosangre" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="papa_typosangre"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="papa_estadocivil" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="papa_estadocivil"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="papa_genero" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="papa_genero"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="papa_parroquia" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="papa_parroquia"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parroquia"/>
+	</field>
+	<field name="papa_niveleduca" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="papa_niveleduca"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="papa_titulo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="papa_titulo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="papa_lugartrabajo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="papa_lugartrabajo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="papa_cargo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="papa_cargo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="papa_teleftrabajo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="papa_teleftrabajo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="papa_extension" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="papa_extension"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="papa_dirtrabajo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="papa_dirtrabajo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="papa_ruc" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="papa_ruc"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="papa_ocupacion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="papa_ocupacion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="papa_profesion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="papa_profesion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="papa_esreplegal" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="papa_esreplegal"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="papa_retirarest" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.label" value="papa_retirarest"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="papa_foto" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="papa_foto"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_user"/>
+	</field>
+	<field name="papa_tipopadre" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="papa_tipopadre"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent_type"/>
+	</field>
+	<field name="mama_cedula" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="mama_cedula"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="mama_nombres" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="mama_nombres"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="mama_apellidos" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="mama_apellidos"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="mama_direccion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="mama_direccion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="mama_telefono" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="mama_telefono"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="mama_celular" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="mama_celular"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="mama_email" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="mama_email"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="mama_nacionalidad" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="mama_nacionalidad"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="mama_tiposangre" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="mama_tiposangre"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="mama_estadocivil" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="mama_estadocivil"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="mama_genero" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="mama_genero"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="mama_parroquia" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="mama_parroquia"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parroquia"/>
+	</field>
+	<field name="mama_niveleduca" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="mama_niveleduca"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="mama_titulo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="mama_titulo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="mama_lugartrabajo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="mama_lugartrabajo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="mama_cargo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="mama_cargo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="mama_teleftrabajo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="mama_teleftrabajo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="mama_extension" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="mama_extension"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="mama_dirtrabajo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="mama_dirtrabajo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="mama_ruc" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="mama_ruc"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="mama_ocupacion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="mama_ocupacion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="mama_profesion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="mama_profesion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="mama_replegal" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="mama_replegal"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="mama_retirarest" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.label" value="mama_retirarest"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent"/>
+	</field>
+	<field name="mama_foto" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="mama_foto"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_user"/>
+	</field>
+	<field name="std_curso" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="std_curso"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_class_name"/>
+	</field>
+	<field name="std_cursoecua" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="std_cursoecua"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_class_name"/>
+	</field>
+	<field name="std_paralelo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="std_paralelo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_section_name"/>
+	</field>
+	<field name="mama_tipopadre" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="mama_tipopadre"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_parent_type"/>
+	</field>
+	<field name="fac_ruc" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="fac_ruc"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_envoice_client"/>
+	</field>
+	<field name="fac_razonsocial" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="fac_razonsocial"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_envoice_client"/>
+	</field>
+	<field name="fac_direccion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="fac_direccion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_envoice_client"/>
+	</field>
+	<field name="fac_telefono" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="fac_telefono"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_envoice_client"/>
+	</field>
+	<field name="fac_celular" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="fac_celular"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_envoice_client"/>
+	</field>
+	<field name="fac_email" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="fac_email"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_envoice_client"/>
+	</field>
+	<field name="reg_codigomat" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="reg_codigomat"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_std_registration"/>
+	</field>
+	<field name="reg_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="reg_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sch_std_registration"/>
+	</field>
+	<group name="padres"/>
+	<pageHeader>
+		<band height="92">
+			<frame>
+				<reportElement x="0" y="7" width="555" height="73" uuid="54ede50d-979f-4b5c-9904-1473878718b6"/>
+				<box padding="1">
+					<pen lineWidth="1.0" lineStyle="Double"/>
+				</box>
+				<staticText>
+					<reportElement x="79" y="-1" width="400" height="28" uuid="b985a5e6-c1ae-4b37-b36a-9efa80678976">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="9"/>
+					</textElement>
+					<text><![CDATA[UNIDAD EDUCATIVA PARTICULAR BINACIONAL FRANCESA
+“ J O S E P H D E J U S S I E U ”]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="79" y="27" width="400" height="22" uuid="e2a1ca42-5a1c-4bee-b921-ff2d82ea0876">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<text><![CDATA[S E C R E T A R I A G E N E R A L]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="79" y="49" width="400" height="22" uuid="5855f67b-cd31-485a-96b0-27005ed0c1f0">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Algerian" size="14"/>
+					</textElement>
+					<text><![CDATA[FICHA DE MATRICULA 2019 - 2020]]></text>
+				</staticText>
+				<line>
+					<reportElement x="79" y="27" width="400" height="1" uuid="c258b58d-b2da-4a37-9251-b824f9fcbe59"/>
+				</line>
+				<line>
+					<reportElement x="79" y="50" width="400" height="1" uuid="e9068c2e-8010-4342-905d-20608f17db3f"/>
+				</line>
+				<line>
+					<reportElement x="479" y="-2" width="1" height="74" uuid="66c2f1f4-4b33-4dce-a204-1df58e694ac9"/>
+				</line>
+				<line>
+					<reportElement x="79" y="-1" width="1" height="74" uuid="29c3f8ff-7e73-4e26-9c69-a9c0efe4d91a"/>
+				</line>
+				<image>
+					<reportElement x="9" y="4" width="70" height="65" uuid="e1328b87-ebb8-4472-975d-f6e24df272d7"/>
+					<imageExpression><![CDATA["C:/opt/ProyectosJava/WorkspacesJdev/sms/school/web/src/main/webapp/resources/images/logo.png"]]></imageExpression>
+				</image>
+				<image>
+					<reportElement x="480" y="30" width="73" height="35" uuid="2730c4a0-1cb8-4c11-91b8-3d0d77019d86"/>
+					<imageExpression><![CDATA["C:/opt/ProyectosJava/WorkspacesJdev/sms/school/web/src/main/webapp/resources/images/aefe.jpg"]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement x="479" y="-1" width="74" height="28" uuid="89d8724e-ef74-4bee-bfad-7d87c8c3209c"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="18"/>
+					</textElement>
+					<text><![CDATA[UEPBF]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="596">
+			<frame>
+				<reportElement x="0" y="0" width="554" height="350" uuid="ed0f0211-6af1-424c-b27a-6bbf1ce12d6f"/>
+				<box padding="0">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="0" width="400" height="20" backcolor="#9BC1CC" uuid="75312a3f-14e2-4bf2-9c2c-22fae7a43d0e">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Calibri" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[DATOS DE ESTUDIANTE]]></text>
+				</staticText>
+				<line>
+					<reportElement x="0" y="295" width="552" height="1" uuid="72d21dea-1839-461e-b0bc-e0235210539b">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="0" y="20" width="400" height="1" uuid="f5df4ff7-b59f-49d2-841a-9388e87299ce"/>
+				</line>
+				<line>
+					<reportElement x="0" y="41" width="400" height="1" uuid="7589565d-2c78-44da-892e-1e6f8ea6fd7c"/>
+				</line>
+				<line>
+					<reportElement x="0" y="60" width="400" height="1" uuid="691a170f-81c3-4dc4-bbe7-4326358bec42"/>
+				</line>
+				<line>
+					<reportElement x="0" y="80" width="400" height="1" uuid="c21a167a-c39b-4aa4-83d1-746cab5e42e7"/>
+				</line>
+				<line>
+					<reportElement x="400" y="-1" width="1" height="119" uuid="7675f4ff-2fcb-49a6-859a-fc67bc273b29"/>
+				</line>
+				<line>
+					<reportElement x="0" y="329" width="552" height="1" uuid="c210606d-e540-4f78-bac5-0e1e162027e3">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+				</line>
+				<staticText>
+					<reportElement x="0" y="22" width="38" height="16" uuid="df5767a1-cd05-4365-961c-90dd2f2e40e1">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<text><![CDATA[Curso:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="62" width="78" height="16" uuid="8f91c2d9-b767-44c1-a49a-7361b230ea1b">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<text><![CDATA[Cédula/Pasaporte: ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="43" width="78" height="16" uuid="5eb917ea-85d4-4806-99c1-70d4013b6177">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="8" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Apellidos y Nombres: ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="82" width="148" height="16" uuid="f32a6156-8fec-4a1a-a9bd-9796ab5213ec">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<text><![CDATA[Lugar y Fecha de nacimiento (mm/dd/aa):]]></text>
+				</staticText>
+				<line>
+					<reportElement x="0" y="100" width="400" height="1" uuid="e9ca41f2-d3eb-486b-82da-9bafa5ef1f8f"/>
+				</line>
+				<line>
+					<reportElement x="1" y="158" width="552" height="1" uuid="72845739-52a4-4be6-a4bf-e3dd5894f29c">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+				</line>
+				<staticText>
+					<reportElement x="0" y="102" width="58" height="16" uuid="67269858-2b92-4a1b-9354-44c3997726d0">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<text><![CDATA[Nacionalidad: ]]></text>
+				</staticText>
+				<frame>
+					<reportElement mode="Opaque" x="0" y="119" width="552" height="20" backcolor="#D3E8F5" uuid="176688cb-0726-4f8e-b152-1b3b90c3ac72">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box topPadding="1" leftPadding="0" bottomPadding="1">
+						<pen lineWidth="1.0"/>
+					</box>
+					<staticText>
+						<reportElement x="10" y="0" width="534" height="18" uuid="1c0c224d-df7c-47f8-9097-c796254d8f14">
+							<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						</reportElement>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font fontName="Calibri" size="8" isBold="true"/>
+						</textElement>
+						<text><![CDATA[INFORMACIÓN DEL REPRESENTANTE LEGAL]]></text>
+					</staticText>
+				</frame>
+				<textField>
+					<reportElement x="80" y="62" width="100" height="16" uuid="c129d290-0df9-4203-83f2-e4a7ae101a0c">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{std_cedula}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="79" y="43" width="290" height="16" uuid="21722bb3-53c7-4988-8ded-44144a647c26"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{std_apellidos}+" "+$F{std_nombres}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="155" y="82" width="246" height="16" uuid="26bc9d06-1d69-4422-8b38-2c58827e6e46">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{std_lugarnaci}+",  "+$F{std_fecnacimiento}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="238" y="21" width="1" height="20" uuid="fcae0dce-8b45-449a-88e0-ef6819e0d5c2">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="180" y="100" width="1" height="20" uuid="8c22fad7-8134-480b-a5a1-6e3646ed7fdf">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+				</line>
+				<staticText>
+					<reportElement x="242" y="22" width="56" height="16" uuid="2d2ce40a-7518-45d8-a8e6-35a616c2cf6a">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<text><![CDATA[Matrícula Nº: ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="182" y="101" width="38" height="17" uuid="2f55436c-2ab5-4fea-a87f-071f5e07a14c">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<text><![CDATA[Edad: ]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="299" y="22" width="100" height="16" uuid="0d468124-38b6-4c64-893b-418af93945ba">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Calibri" size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{reg_codigomat}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="60" y="102" width="108" height="16" uuid="86c6ad38-1c08-419d-a4d2-38ea45bcc239"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{std_nacionalidad}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="222" y="102" width="100" height="16" uuid="54ac37ae-a4e8-442c-ac18-4639fb5bdbbb"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{std_edad}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="40" y="22" width="198" height="16" uuid="aa002356-61a8-4cc3-938d-2a80bc0737a9">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{std_curso}+"/"+$F{std_cursoecua}]]></textFieldExpression>
+				</textField>
+				<frame>
+					<reportElement mode="Opaque" x="0" y="194" width="552" height="20" backcolor="#D3E8F5" uuid="1ffc7528-73e0-4c8b-86f2-e1c8386eff75">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box topPadding="1" leftPadding="0" bottomPadding="1">
+						<pen lineWidth="1.0"/>
+					</box>
+					<staticText>
+						<reportElement x="10" y="0" width="534" height="18" uuid="32d2e0bf-2650-48d0-86e3-a529f6ab28b4">
+							<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						</reportElement>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font fontName="Calibri" size="8" isBold="true"/>
+						</textElement>
+						<text><![CDATA[ESTUDIANTE: Datos del Domicilio (Dirección) ]]></text>
+					</staticText>
+				</frame>
+				<line>
+					<reportElement x="311" y="138" width="1" height="55" uuid="691d5ab2-3fe2-475b-8f4b-bdc3c97f276c">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="429" y="159" width="1" height="35" uuid="33983bfb-8955-4631-bec1-d644af6e7f6f">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+				</line>
+				<staticText>
+					<reportElement x="0" y="141" width="89" height="16" uuid="7fbee7d3-b352-4552-a2c3-020ec8eb5002">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<text><![CDATA[Nombres y Apellidos: ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="160" width="58" height="16" uuid="8af1fd0f-e354-4b98-8104-9e759ecda5c0">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<text><![CDATA[Lugar de trabajo:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="177" width="78" height="16" uuid="28a2fce8-daa0-4e8e-a152-f431087a7197">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<text><![CDATA[Dirección del trabajo: ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="312" y="141" width="58" height="16" uuid="f07f2ddb-c0ef-48bc-a1cb-923750a74ac9">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<text><![CDATA[Identificación: ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="312" y="160" width="107" height="16" uuid="1e853cd1-9e80-48c4-b7b5-a7cc814d198c">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<text><![CDATA[Teléfono Convencional:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="431" y="160" width="58" height="16" uuid="8dcbe816-95dd-4236-b497-99f2f84a7969">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<text><![CDATA[Tel. Celular: ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="215" width="58" height="16" uuid="0f0e2ab4-c94c-40fd-baee-a511256095e6">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<text><![CDATA[Dirección: ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="231" width="58" height="16" uuid="14dcabed-0cdc-4261-8ec1-fa7977a783c9">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<text><![CDATA[Parroquia: ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="247" width="69" height="16" uuid="031bfe54-a9ce-4037-9ad7-bb98dfc36935">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<text><![CDATA[Color del domicilio:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="263" width="89" height="16" uuid="aee1859b-3fd2-499a-8ddd-ff6d5c161e97">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<text><![CDATA[N° de pisos del domicilio:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="279" width="89" height="16" uuid="cd2542f7-016d-417e-ab1a-c896cd25fbe8">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<text><![CDATA[Referencia domiciliaria:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="307" width="58" height="16" uuid="992327c5-9f55-4fc9-9393-551264c0d152">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<text><![CDATA[Convencional: ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="331" width="58" height="16" uuid="05e20005-3a85-4839-8438-cb69ed9ac330">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<text><![CDATA[Celular:]]></text>
+				</staticText>
+				<line>
+					<reportElement x="311" y="214" width="1" height="136" uuid="165c26e2-6f42-4e7b-be01-a44126df299d">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="131" y="297" width="1" height="53" uuid="050f84b0-d5b2-4c8b-bc22-9a4eea368a82">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+				</line>
+				<staticText>
+					<reportElement x="312" y="296" width="77" height="16" uuid="f9725e00-8879-4de5-bb3c-ee6464c78f27">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<text><![CDATA[El estudiante vive con:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="312" y="313" width="87" height="16" uuid="b39c3fa8-7b7b-420c-96ce-7eb1cc640644">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<text><![CDATA[El alumno es huérfano de:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="312" y="330" width="147" height="16" uuid="41d39aa7-2dac-4810-8d13-1c1a15e0c33d">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<text><![CDATA[Cuántos hermanos son incluido el alumno:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="133" y="308" width="58" height="16" uuid="054c7f70-e974-46f2-a62f-3268a8d56d8a">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<text><![CDATA[Zona: ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="313" y="247" width="88" height="16" uuid="31cfa041-0f27-4aca-b5f1-a0f5aaa2cadd">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<text><![CDATA[Enfermedad pre-existente: ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="313" y="215" width="58" height="16" uuid="76c34504-cb1f-4d1d-b138-c727d188def8">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<text><![CDATA[Alergia:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="313" y="231" width="58" height="16" uuid="31928d11-0211-4187-a308-070c1d987c20">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="8"/>
+					</textElement>
+					<text><![CDATA[Discapacidad:]]></text>
+				</staticText>
+				<subreport>
+					<reportElement x="0" y="352" width="554" height="19" uuid="2aae158d-f92f-40a7-80cc-d4b181d633b6"/>
+					<subreportParameter name="STD_ID">
+						<subreportParameterExpression><![CDATA[$F{std_id}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="ACY_ID">
+						<subreportParameterExpression><![CDATA[$F{reg_id}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA["/Padares.jasper"]]></subreportExpression>
+				</subreport>
+				<image>
+					<reportElement x="402" y="1" width="118" height="117" uuid="4eaf6924-a419-4793-b86d-168c8051d43b"/>
+					<imageExpression><![CDATA[$F{st_foto}]]></imageExpression>
+				</image>
+			</frame>
+			<subreport>
+				<reportElement x="1" y="373" width="553" height="24" uuid="776d9309-43d3-4ecb-8645-49b62ae0d34e"/>
+				<subreportParameter name="STD_ID">
+					<subreportParameterExpression><![CDATA[$F{std_id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="STD_PARALELO">
+					<subreportParameterExpression><![CDATA[$F{std_paralelo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="STD_GRADO">
+					<subreportParameterExpression><![CDATA[$F{std_curso}+"/"+$F{std_cursoecua}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["FichaTransporte.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

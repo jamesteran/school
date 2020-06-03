@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CertificadoTituloSetec" pageWidth="553" pageHeight="700" columnWidth="553" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="c35971b1-e7ac-461b-9e5d-66c28e3c316e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="14"/>
+	<parameter name="NUM_CEDULA" class="java.lang.String"/>
+	<parameter name="NOMBRES" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="LOGO_SETEC" class="java.lang.Object"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="canton" class="java.lang.String">
+		<fieldDescription><![CDATA[canton]]></fieldDescription>
+	</field>
+	<field name="cedula" class="java.lang.String">
+		<fieldDescription><![CDATA[cedula]]></fieldDescription>
+	</field>
+	<field name="certificadoEn" class="java.lang.String">
+		<fieldDescription><![CDATA[certificadoEn]]></fieldDescription>
+	</field>
+	<field name="class" class="java.lang.Class">
+		<fieldDescription><![CDATA[class]]></fieldDescription>
+	</field>
+	<field name="institucionCertificadora" class="java.lang.String">
+		<fieldDescription><![CDATA[institucionCertificadora]]></fieldDescription>
+	</field>
+	<field name="nombres" class="java.lang.String">
+		<fieldDescription><![CDATA[nombres]]></fieldDescription>
+	</field>
+	<field name="numeroCertificado" class="java.lang.String">
+		<fieldDescription><![CDATA[numeroCertificado]]></fieldDescription>
+	</field>
+	<field name="provincia" class="java.lang.String">
+		<fieldDescription><![CDATA[provincia]]></fieldDescription>
+	</field>
+	<field name="validoDesde" class="java.lang.String">
+		<fieldDescription><![CDATA[validoDesde]]></fieldDescription>
+	</field>
+	<field name="validoHasta" class="java.lang.String">
+		<fieldDescription><![CDATA[validoHasta]]></fieldDescription>
+	</field>
+	<title>
+		<band height="212">
+			<image>
+				<reportElement uuid="8aabccba-a8c2-410a-8fe7-b64d68e6023e" x="25" y="16" width="114" height="38"/>
+				<imageExpression><![CDATA[$P{LOGO_SETEC}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="f2dd16a0-8b51-441e-bb3e-37d147d2f23e" x="25" y="54" width="503" height="25"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[Información provista por la Secretaría Técnica del Sistema Nacional de Cualificaciones y Capacitación Profesional (SETEC)]]></text>
+			</staticText>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement uuid="75f0c773-a71b-42e7-843e-34fcd56ff78c" positionType="Float" isPrintRepeatedValues="false" x="25" y="79" width="503" height="32"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["En el caso de detectar inconsistencias en la información proporcionada, se recomienda solicitar a la institución que emitió el certificado, la rectificación correspondiente."]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="b6d24a84-3dbe-40ed-80ba-294ecfdf3c4f" x="24" y="177" width="504" height="28"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Certificaciones del Sistema Nacional de Cualificaciones y Capacitación Profesional]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b02d3d20-e9c7-4c25-811d-b3f64ba015a4" x="25" y="120" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombres]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="302ea4b5-37c8-4f1c-8bae-896cb5487e2d" x="125" y="120" width="365" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nombres}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="ea65d0e0-0ec0-4a19-a47c-645c33eceac5" x="25" y="140" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cédula]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="68f0f9e8-dfe8-4dda-9b39-7ab1812ef8e0" x="125" y="140" width="365" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{cedula}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="234" splitType="Stretch">
+			<printWhenExpression><![CDATA[new Boolean($F{institucionCertificadora} != null)]]></printWhenExpression>
+			<elementGroup>
+				<staticText>
+					<reportElement uuid="d5ffb819-722d-458c-a243-130e351a2a17" positionType="Float" x="24" y="134" width="172" height="20"/>
+					<box leftPadding="10">
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement verticalAlignment="Middle"/>
+					<text><![CDATA[Cantón]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="f842ee33-e287-4ec5-9c36-4910c9e878c4" positionType="Float" x="196" y="134" width="331" height="20" isPrintWhenDetailOverflows="true"/>
+					<box leftPadding="10">
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{canton}]]></textFieldExpression>
+				</textField>
+			</elementGroup>
+			<elementGroup>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="6548b4e2-157f-486b-90ec-08b574855502" positionType="Float" x="196" y="114" width="331" height="20" isPrintWhenDetailOverflows="true"/>
+					<box leftPadding="10">
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{provincia}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="5f4f5936-22e9-4fb8-8b7c-54285a46178b" positionType="Float" x="24" y="114" width="172" height="20"/>
+					<box leftPadding="10">
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement verticalAlignment="Middle"/>
+					<text><![CDATA[Provincia]]></text>
+				</staticText>
+			</elementGroup>
+			<elementGroup>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="150edc82-8fc3-42e2-81b7-ef2de4d5bfe6" positionType="Float" x="196" y="94" width="331" height="20" isPrintWhenDetailOverflows="true"/>
+					<box leftPadding="10">
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{validoHasta}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="382b8d2b-ad84-47a9-962d-37dd87846fd8" positionType="Float" x="24" y="94" width="172" height="20"/>
+					<box leftPadding="10">
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement verticalAlignment="Middle"/>
+					<text><![CDATA[Válido hasta]]></text>
+				</staticText>
+			</elementGroup>
+			<elementGroup>
+				<staticText>
+					<reportElement uuid="461a4e5b-be8a-47a6-a4ab-f86bb17d4efc" positionType="Float" x="24" y="54" width="172" height="20"/>
+					<box leftPadding="10">
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement verticalAlignment="Middle"/>
+					<text><![CDATA[Número de Registro SETEC]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="507049ee-0e5c-46fe-a25a-932f7e33a492" positionType="Float" x="196" y="54" width="331" height="20" isPrintWhenDetailOverflows="true"/>
+					<box leftPadding="10">
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{numeroCertificado}]]></textFieldExpression>
+				</textField>
+			</elementGroup>
+			<elementGroup>
+				<staticText>
+					<reportElement uuid="b6d24a84-3dbe-40ed-80ba-294ecfdf3c4f" positionType="Float" stretchType="RelativeToTallestObject" x="24" y="14" width="172" height="20"/>
+					<box leftPadding="10">
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement verticalAlignment="Middle"/>
+					<text><![CDATA[Institución Certificadora]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="9765c464-0834-44ba-b6c1-8ded4ba5153c" positionType="Float" x="196" y="14" width="331" height="20" isPrintWhenDetailOverflows="true"/>
+					<box leftPadding="10">
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{institucionCertificadora}]]></textFieldExpression>
+				</textField>
+			</elementGroup>
+			<elementGroup>
+				<staticText>
+					<reportElement uuid="d623e138-63dd-439b-9b4a-7514867c987b" positionType="Float" stretchType="RelativeToTallestObject" x="24" y="34" width="172" height="20"/>
+					<box leftPadding="10">
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement verticalAlignment="Middle"/>
+					<text><![CDATA[Certificado en]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="c46f399f-8e3f-448b-970f-6bbe90857622" positionType="Float" x="196" y="34" width="331" height="20" isPrintWhenDetailOverflows="true"/>
+					<box leftPadding="10">
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Justified" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{certificadoEn}]]></textFieldExpression>
+				</textField>
+			</elementGroup>
+			<elementGroup>
+				<staticText>
+					<reportElement uuid="fb32c7ab-5f6d-43b6-81fa-109589367a15" positionType="Float" x="24" y="74" width="172" height="20"/>
+					<box leftPadding="10">
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement verticalAlignment="Middle"/>
+					<text><![CDATA[Válido desde]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="339c3b35-ff49-4f18-b22b-0cc9839ef7a6" positionType="Float" x="196" y="74" width="331" height="20" isPrintWhenDetailOverflows="true"/>
+					<box leftPadding="10">
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{validoDesde}]]></textFieldExpression>
+				</textField>
+			</elementGroup>
+		</band>
+	</detail>
+</jasperReport>

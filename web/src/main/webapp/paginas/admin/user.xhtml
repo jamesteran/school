@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="#{layoutMB.template}">
+
+            <ui:define name="title">
+                School Management - Admin - Teacher info
+            </ui:define>
+
+            <ui:define name="body">
+                <f:view>
+                    <h:form>
+                    	<p:commandButton value="Encriptar" 
+										styleClass="btn-primary" immediate="true" icon="ui-icon-extlink"
+										action="#{userBean.encriptPasswrUsers()}" />
+                        <p:dataTable value="#{userBean.users}" var="item" 
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     rowsPerPageTemplate="3,5,10" widgetVar="50">
+                            
+                            <p:column headerText="Cédula" filterBy="#{item.idNumber}">           
+                                #{item.idNumber}
+                            </p:column>
+                            
+                            <p:column headerText="Nombre" filterBy="#{item.firstName}">           
+                                #{item.firstName}
+                            </p:column>
+                            
+                            <p:column headerText="Apellidos" filterBy="#{item.lastName}">           
+                                #{item.lastName}
+                            </p:column>
+                            
+                                                        
+                           
+                            
+                            <p:column>
+                                <f:facet name="header">Edit</f:facet>
+                                <p:commandLink value="Edit" action="#{displayTeacherInfoBean.goEditPage()}">
+                                    <f:setPropertyActionListener target="#{userBean.user}" value="#{item}"/>
+                                </p:commandLink>
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
+                </f:view>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

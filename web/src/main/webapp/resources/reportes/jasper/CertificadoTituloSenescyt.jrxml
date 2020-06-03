@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CertificadoTituloSenescyt" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="11" bottomMargin="17" uuid="28e74c67-2aa3-4369-9e0f-7959f72f19ca">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="96"/>
+	<style name="table" forecolor="#FFFFFF" backcolor="#FFFFFF" isBold="true" isItalic="true">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Table Dataset 1" uuid="572cc08d-6630-410d-a490-cbabc3190e7c"/>
+	<subDataset name="Table Dataset 2" uuid="fdc45883-0a88-4937-a9d1-2c2843f0f1dd"/>
+	<parameter name="NUM_CEDULA" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="LOGO_BACKGROUND" class="java.lang.Object"/>
+	<parameter name="LOGO_ECUADOR" class="java.lang.Object"/>
+	<parameter name="LOGO_SENESCYT" class="java.lang.Object"/>
+	<parameter name="FIRMA" class="java.lang.Object"/>
+	<parameter name="NOMBRES" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SETEC_DS" class="java.lang.Object"/>
+	<parameter name="LOGO_SETEC" class="java.lang.Object"/>
+	<parameter name="CODIGO_QR" class="java.lang.Object"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="reconocido" class="java.lang.String">
+		<fieldDescription><![CDATA[reconocido]]></fieldDescription>
+	</field>
+	<field name="titulo" class="java.lang.String">
+		<fieldDescription><![CDATA[titulo]]></fieldDescription>
+	</field>
+	<field name="identificacion" class="java.lang.String">
+		<fieldDescription><![CDATA[identificacion]]></fieldDescription>
+	</field>
+	<field name="institucion" class="java.lang.String">
+		<fieldDescription><![CDATA[institucion]]></fieldDescription>
+	</field>
+	<field name="nivel" class="java.lang.String">
+		<fieldDescription><![CDATA[nivel]]></fieldDescription>
+	</field>
+	<field name="fechaRegistro" class="java.lang.String">
+		<fieldDescription><![CDATA[fechaRegistro]]></fieldDescription>
+	</field>
+	<field name="observacion" class="java.lang.String">
+		<fieldDescription><![CDATA[observacion]]></fieldDescription>
+	</field>
+	<field name="numeroRegistro" class="java.lang.String">
+		<fieldDescription><![CDATA[numeroRegistro]]></fieldDescription>
+	</field>
+	<field name="nacionalidad" class="java.lang.String">
+		<fieldDescription><![CDATA[nacionalidad]]></fieldDescription>
+	</field>
+	<field name="notasPortal" class="java.lang.String">
+		<fieldDescription><![CDATA[notasPortal]]></fieldDescription>
+	</field>
+	<field name="nombres" class="java.lang.String">
+		<fieldDescription><![CDATA[nombres]]></fieldDescription>
+	</field>
+	<field name="codigo" class="java.lang.String">
+		<fieldDescription><![CDATA[codigo]]></fieldDescription>
+	</field>
+	<field name="genero" class="java.lang.String">
+		<fieldDescription><![CDATA[genero]]></fieldDescription>
+	</field>
+	<field name="tipo" class="java.lang.String">
+		<fieldDescription><![CDATA[tipo]]></fieldDescription>
+	</field>
+	<background>
+		<band height="574" splitType="Stretch">
+			<image scaleImage="RealSize" hAlign="Center" isUsingCache="true">
+				<reportElement uuid="132035db-8bee-49d4-b3ae-982d11c3ef07" positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="553" height="563"/>
+				<imageExpression><![CDATA[$P{LOGO_BACKGROUND}]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band height="304">
+			<staticText>
+				<reportElement uuid="3183db87-bdd8-4da9-9754-9c9eef495184" x="18" y="94" width="41" height="20"/>
+				<textElement>
+					<font fontName="SansSerif" size="11"/>
+				</textElement>
+				<text><![CDATA[Quito,]]></text>
+			</staticText>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement uuid="9ef0a834-4221-41bf-8dae-d31bcf4c5b51" x="18" y="127" width="514" height="73"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["La Secretaría de Educación Superior, Ciencia, Tecnología e Innovación, SENESCYT, informa que"+ " "+$F{nombres} +""+
+", con documento de identificación número" + " "+$F{identificacion}+", registra en el Sistema Nacional de Información de la"
++" Educación Superior del Ecuador (SNIESE), la siguiente información:"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="3183db87-bdd8-4da9-9754-9c9eef495184" mode="Transparent" x="18" y="232" width="236" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Número de Documento de Identificación:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3183db87-bdd8-4da9-9754-9c9eef495184" mode="Transparent" x="18" y="252" width="236" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Nacionalidad:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3183db87-bdd8-4da9-9754-9c9eef495184" mode="Transparent" x="18" y="272" width="236" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Género:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3183db87-bdd8-4da9-9754-9c9eef495184" mode="Transparent" x="18" y="212" width="236" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="fb308add-58e0-4f90-89a2-44c82e19a3e3" x="254" y="212" width="278" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nombres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="21482ba2-d9f4-4705-b09b-64947803e9da" x="254" y="232" width="278" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{identificacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="8e14c3fc-9955-4c7d-a691-b94357ea1cf6" x="254" y="252" width="278" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nacionalidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="5df49460-9f45-4cb3-b830-c2207c766122" x="254" y="272" width="278" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{genero}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="529d5b14-46a2-4ee6-94c6-be40fdd49b79" x="59" y="94" width="163" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image scaleImage="FillFrame" hAlign="Center">
+				<reportElement uuid="87aa1caa-941a-45c4-9a8a-50087459468a" positionType="Float" stretchType="RelativeToTallestObject" isPrintRepeatedValues="false" mode="Opaque" x="18" y="22" width="171" height="47"/>
+				<imageExpression><![CDATA[$P{LOGO_SENESCYT}]]></imageExpression>
+			</image>
+			<image scaleImage="FillFrame" hAlign="Center">
+				<reportElement uuid="249ac14b-a753-4bf7-a943-2dea32b8a2be" positionType="Float" stretchType="RelativeToTallestObject" isPrintRepeatedValues="false" mode="Opaque" x="488" y="12" width="44" height="57"/>
+				<imageExpression><![CDATA[$P{LOGO_ECUADOR}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<detail>
+		<band height="219" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="6a2828c6-71cc-4003-927e-f61cc8f5bf3c" positionType="Float" x="159" y="24" width="373" height="25"/>
+				<box leftPadding="10">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numeroRegistro}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="2a2fd762-c71c-46c5-8b31-d0c0eb14d3a0" positionType="Float" x="159" y="49" width="373" height="25"/>
+				<box leftPadding="10">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{institucion}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="a2afa97f-0460-462f-a771-d19f4f7270cd" positionType="Float" x="159" y="99" width="373" height="25"/>
+				<box leftPadding="10">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{titulo}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="d300b67a-b228-4d38-b2ce-39b8ba72a6dc" positionType="Float" x="159" y="124" width="373" height="25"/>
+				<box leftPadding="10">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipo}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="6289054e-6fdc-4335-9cba-40a7c83655cb" positionType="Float" x="159" y="149" width="373" height="25"/>
+				<box leftPadding="10">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fechaRegistro}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="6239e665-1593-4c68-a136-3af0828dabd6" positionType="Float" x="159" y="174" width="373" height="25"/>
+				<box leftPadding="10">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{observacion} != "null") ? $F{observacion} : ""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="1e3c6e68-bd12-42cc-ba64-1c99f4775d6e" positionType="Float" x="18" y="174" width="141" height="25"/>
+				<box leftPadding="10">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Observaciones]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e5ac5dc6-de58-4238-89bc-71e4e5387be0" positionType="Float" x="18" y="149" width="141" height="25"/>
+				<box leftPadding="10">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Fecha de Registro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8e8f6ff2-6a4c-48ae-a71a-3754eeb50705" positionType="Float" x="18" y="124" width="141" height="25"/>
+				<box leftPadding="10">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Tipo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d02980f8-f629-490d-804e-3bf560efff65" positionType="Float" stretchType="RelativeToTallestObject" x="18" y="99" width="141" height="25"/>
+				<box leftPadding="10">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Título]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c366febb-bf59-41f5-9c8e-974a47b81c66" positionType="Float" x="18" y="74" width="141" height="25"/>
+				<box leftPadding="10">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Institución que  Reconoce]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a1f5cf8e-df41-401e-933e-614197be7e24" positionType="Float" x="18" y="49" width="141" height="25"/>
+				<box leftPadding="10">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Institución de Origen]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0ec22015-ee67-47b0-bf37-c8ef9d282506" positionType="Float" x="18" y="24" width="141" height="25"/>
+				<box leftPadding="10">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Número de Registro]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="1011c088-5ada-4aa7-9984-9e6d7b7c4418" x="18" y="4" width="514" height="20"/>
+				<box leftPadding="10"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nivel}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+				<reportElement uuid="07af8451-483e-458b-8575-5f583c6a7d7c" positionType="Float" x="159" y="74" width="373" height="25"/>
+				<box leftPadding="10">
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{reconocido} != "null") ? $F{reconocido} : ""]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="446" splitType="Stretch">
+			<subreport>
+				<reportElement uuid="ce3f0235-b8af-40bc-a594-3d9c398c72ad" stretchType="RelativeToTallestObject" x="2" y="370" width="553" height="76"/>
+				<subreportParameter name="LOGO_SETEC">
+					<subreportParameterExpression><![CDATA[$P{LOGO_SETEC}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[$P{SETEC_DS}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "CertificadoTituloSetec.jasper"]]></subreportExpression>
+			</subreport>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement uuid="9ef0a834-4221-41bf-8dae-d31bcf4c5b51" positionType="Float" isPrintRepeatedValues="false" mode="Transparent" x="18" y="11" width="514" height="88"/>
+				<box leftPadding="6" rightPadding="6">
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Serif" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["IMPORTANTE"+
+"La información proporcionada en este documento es la que consta en el SNIESE, que se alimenta de la información"+
+"proporcionada por las instituciones del sistema de educación superior, conforme lo disponen los artículos 129 de la Ley"+
+"Orgánica Superior y 19 de su Reglamento."+
+"El reconocimiento/registro del título no habilita al ejercicio de las profesiones reguladas por leyes específicas, y de"+
+"manera especial al ejercicio de las profesiones que pongan en riesgo de modo directo la vida, salud y seguridad"+
+"ciudadana conforme el artículo 104 de la Ley Orgánica de Educación Superior. Según la Resolución"+
+"RPC-SO-16-No.256-2016"]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement uuid="9ef0a834-4221-41bf-8dae-d31bcf4c5b51" positionType="Float" isPrintRepeatedValues="false" x="18" y="99" width="514" height="50"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["En el caso de detectar inconsistencias en la información proporcionada, se recomienda solicitar a la institución de educación superior que emitió el título, la rectificación correspondiente."+
+"Para comprobar la veracidad de la información proporcionada, usted debe acceder a la siguiente dirección:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="6d861646-a81f-4a93-8c62-40795e382506" positionType="Float" isPrintRepeatedValues="false" x="2" y="174" width="551" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["www.senescyt.gob.ec"]]></textFieldExpression>
+			</textField>
+			<image scaleImage="FillFrame" hAlign="Center">
+				<reportElement uuid="249ac14b-a753-4bf7-a943-2dea32b8a2be" isPrintRepeatedValues="false" mode="Opaque" x="257" y="189" width="41" height="37"/>
+				<imageExpression><![CDATA[$P{FIRMA}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement uuid="6d861646-a81f-4a93-8c62-40795e382506" isPrintRepeatedValues="false" x="0" y="246" width="553" height="23"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["SECRETARÍA DE EDUCACIÓN SUPERIOR, CIENCIA, TECNOLOGÍA E INNOVACIÓN"]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement uuid="71730458-b3a5-469c-a80d-deb470f3c0fe" isPrintRepeatedValues="false" mode="Opaque" x="243" y="339" width="69" height="31"/>
+				<jr:Code128 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" textPosition="bottom">
+					<jr:codeExpression><![CDATA[$F{identificacion}]]></jr:codeExpression>
+				</jr:Code128>
+			</componentElement>
+			<staticText>
+				<reportElement uuid="1411eac0-6d37-474a-bc75-d481772d84c7" mode="Transparent" x="2" y="226" width="551" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Documento firmado electrónicamente]]></text>
+			</staticText>
+			<image>
+				<reportElement uuid="04f09549-2cd3-4674-b4ea-1a831785cbb3" x="243" y="269" width="69" height="60"/>
+				<imageExpression><![CDATA[$P{CODIGO_QR}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="7f8eca3b-16fa-42ea-b9b4-092db6829ea8" x="18" y="149" width="67" height="20"/>
+				<textElement/>
+				<text><![CDATA[GENERADO:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement uuid="b74a9c19-90cc-4770-8748-d5fe979b9f93" x="99" y="149" width="155" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

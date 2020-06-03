@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="AcuerdoTransporte" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="077f4f80-d948-44d8-99e5-24080ecff518">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="344" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="4" width="555" height="16" uuid="ecaadbea-9cc1-4c90-9f69-ba7354326c7b"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Cambria" size="11"/>
+				</textElement>
+				<text><![CDATA[Cuenca, 01 de septiembre del 2020.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="40" width="555" height="16" uuid="d9bb8276-df72-41d2-96fd-9f1407be6dcb"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Cambria" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Comunicado para los estudiantes que tienen contratado el Servicio de Transporte]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="58" width="554" height="30" uuid="321a82ab-86b9-4710-b008-d15d48db174f"/>
+				<textElement>
+					<font fontName="Cambria" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[Estimados Padres de Familia, reciban un cordial saludo, por medio del presente comunicamos que se envió a su mail el Reglamento Interno de Transporte, por lo que solicitamos llenar la siguiente información.]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+</jasperReport>

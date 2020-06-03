@@ -1,0 +1,12 @@
+.settings
+.project
+/ear/.settings
+/ejb/.settings
+/web/.settings
+/ear/target
+/ejb/target
+/web/target
+/ear/.project
+/ejb/.project
+/web/.project
+/web/.tern-project

@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<p:dialog widgetVar="varParent" modal="true" id="popupParent" resizable="false"
+				width="70%" styleClass="card">	
+			<f:facet name="header">
+		        Padres
+	        </f:facet>		
+			<h:form name="frmParent">
+				
+				<p:outputPanel id="panelParent" style="font-size: 8pt !important;" class="ui-fluid" >
+					<p:messages globalOnly="true" ajaxRendered="true"
+						showDetail="true" showSummary="true"/>
+				
+					<h:panelGrid columns="2" cellspacing="7" style="width:100%;" columnClasses="ui-g-6,ui-g-6"
+								styleClass="ui-fluid card" >
+					
+						<h:panelGrid columns="3" columnClasses="ui-g-3,ui-g-6,ui-g-3" style="width:100%"
+	                			 styleClass="ui-fluid card" cellspacing="7">	                  
+	                			 
+		                  <p:outputLabel value="Cedula:"/>
+		                  <p:inputText value="#{studentController.parentPha.idNumber}" id="cedPrent" required="true" requiredMessage="Ingrese la cédula">
+		                  	<p:ajax listener="#{studentController.buscarParentByCedula}" update="panelParent"></p:ajax>
+		                  </p:inputText>
+		                  <p:message for="cedPrent"/>
+		
+		                  <p:outputLabel value="Nombres:"/>
+		                  <p:inputText value="#{studentController.parentPha.firstName}" id="nomParent" required="true" requiredMessage="Ingrese los nombres"/>
+		                  <p:message for="nomParent"/>
+		                  
+		                  <p:outputLabel value="Apellidos:"/>
+		                  <p:inputText value="#{studentController.parentPha.lastName}" id="apeParent" required="true" requiredMessage="Ingrese los apellidos"/>
+		                  <p:message for="apeParent"/>
+		                  
+		                  <p:outputLabel value="Género: "/>
+			              <p:selectOneMenu value="#{studentController.parentPha.parentGender}" style="width: 130px;"  id="genParent"
+				              	required="true" requiredMessage="Seleccione el género">
+				                <f:selectItem itemLabel="#{msg['mensaje.seleccione']}" itemValue="#{null}" noSelectionOption="true"  />
+				                <f:selectItems value="#{studentController.genero}" var="gen" itemLabel="#{gen.descripcion}" itemValue="#{gen.codigo}"/>	                
+			              </p:selectOneMenu>
+			              <p:message for="genParent"/>
+		
+		                  <p:outputLabel value="Nacionalidad:"/>
+		                  <p:inputText value="#{studentController.parentPha.parentNac}" id="nacParent" required="true" 
+		                  					onkeyup="value=value.toUpperCase()"  requiredMessage="Ingrese la nacionalidad"/>
+		                  <p:message for="nacParent"/>
+		                  
+		                  <p:outputLabel value="Fecha Nacimiento:" />
+						  <p:calendar value="#{studentController.parentPha.parentFecNac}"
+								id="dobParente" required="true"
+								requiredMessage="Ingrese fecha nacimiento" locale="es_ES"
+								pattern="dd/MM/yyyy" />
+						  <p:message for="dobParente" />
+		                  
+		                  <p:outputLabel value="Teléfono:"/>
+		                  <p:inputText value="#{studentController.parentPha.parentPhone}" id="phoneParent" required="true" requiredMessage="Ingrese el teléfono"/>
+		                  <p:message for="phoneParent"/>
+		                  
+		                  <p:outputLabel value="Celular:"/>
+		                  <p:inputText value="#{studentController.parentPha.parentMobil}" id="mobilParent" required="true" requiredMessage="Ingrese número de celular"/>
+		                  <p:message for="mobilParent"/>
+		                  
+		                  <p:outputLabel value="Email:"/>
+		                  <p:inputText value="#{studentController.parentPha.parentEmail}" id="emailParent" required="true" requiredMessage="Ingrese email" validatorMessage="Ingrese email válido">
+		                  		<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
+	                  	  </p:inputText>
+		                  <p:message for="emailParent"/>
+		                  
+		                  <p:outputLabel value="Dirección:"/>
+		                  <p:inputText value="#{studentController.parentPha.parentAddr}" id="addrParent" required="true" requiredMessage="Ingrese la direccion"/>
+		                  <p:message for="addrParent"/>	
+		                  
+		                  <p:outputLabel value="Tipo Padre: "/>
+				              <p:selectOneMenu value="#{studentController.parentPha.parentType.prntypeId}" style="width: 130px;"  id="typeParent"
+				              	required="true" requiredMessage="Seleccione typo padre">
+				                <f:selectItem itemLabel="#{msg['mensaje.seleccione']}" itemValue="#{null}" noSelectionOption="true" />
+				                <f:selectItems value="#{studentController.parentTypes}" var="typ" itemLabel="#{typ.prntypeName}" itemValue="#{typ.prntypeId}"/>	                
+				              </p:selectOneMenu>
+			              <p:message for="typeParent"/>
+		                  
+		                  <p:outputLabel value="Es representante legal:"/>
+		                  <p:selectBooleanCheckbox value="#{studentController.parentPha.repLegal}" itemLabel="Representante legal" id="chbRepLegal"/>	 
+		                  <p:message for="chbRepLegal"/>	
+		                  
+		                  <p:outputLabel value="Autorizado retirar alumno:"/>
+		                  <p:selectBooleanCheckbox value="#{studentController.parentPha.retStudent}" itemLabel="Retirar alumuno" id="chbRetAlumno"/>	 
+		                  <p:message for="chbRetAlumno"/>                 
+		                                
+		                </h:panelGrid>
+		                
+		                <h:panelGrid columns="3" columnClasses="ui-g-3,ui-g-6,ui-g-3" style="width:100%"
+	                			 styleClass="ui-fluid card" cellspacing="7">
+	                			 
+               		 		<p:outputLabel value=""/>       
+	            		  	<p:outputPanel id="pnlParentFoto"><img src="data:image/png;base64, #{studentController.parentPic}" alt="" style="border: 10px ridge #c2dfef;" 
+	            		  		width="120" height="130"/>
+	          		  	  	</p:outputPanel>
+	            		  	<p:outputLabel value=""/> 
+	            		  			 
+	            		  	<p:outputLabel value="Foto:"/>
+		                  	<p:fileUpload value="#{studentController.parentPhoto}" mode="advanced" id="fotoParent" update="pnlParentFoto" auto="true" style="width: 120px;"
+		                  				allowTypes="/(\.|\/)(gif|jpe?g|png)$/"  fileUploadListener="#{studentController.changeParentPhoto}" process="panelParent"
+		                  				label="Escoger" sizeLimit="100000" invalidSizeMessage="Máximo 1MB" invalidFileMessage="Solo jpg y png" />
+		                  	<p:message for="fotoParent"/>
+		                  	
+		                  	<p:outputLabel value="Parroquia: "/>
+							  <p:selectOneMenu
+									value="#{studentController.parentPha.parroquia.parroquiaId}"
+									style="width: 130px;" id="parrParent" required="true" requiredMessage="Seleccione la parroquia">
+									<f:selectItem itemLabel="#{msg['mensaje.seleccione']}"
+										itemValue="#{null}" noSelectionOption="true" />
+									<f:selectItems value="#{studentController.parroquias}" var="par"
+										itemLabel="#{par.parroquiaName}" itemValue="#{par.parroquiaId}" />
+							  </p:selectOneMenu>
+							  <p:message for="parrParent"/>
+				              
+				              <p:outputLabel value="Estado Civil: "/>
+				              <p:selectOneMenu value="#{studentController.parentPha.civilState}" style="width: 130px;"  id="civParent" 
+					              	required="true" requiredMessage="Seleccione estado civil">
+					                <f:selectItem itemLabel="#{msg['mensaje.seleccione']}" itemValue="#{null}" noSelectionOption="true" />
+					                <f:selectItems value="#{studentController.estadoCivil}" var="sciv" itemLabel="#{sciv.descripcion}" itemValue="#{sciv.codigo}"/>	                
+				              </p:selectOneMenu>
+				              <p:message for="civParent"/>	    
+			                  
+			                  <p:outputLabel value="Nivel de educación: "/>
+				              <p:selectOneMenu value="#{studentController.parentPha.educationLevel}" style="width: 130px;"  id="eduParent"
+				              	required="true" requiredMessage="Seleccione nivel de educación">
+				                <f:selectItem itemLabel="#{msg['mensaje.seleccione']}" itemValue="#{null}" noSelectionOption="true" />
+				                <f:selectItems value="#{studentController.nivEducacion}" var="niv" itemLabel="#{niv.descripcion}" itemValue="#{niv.codigo}"/>	                
+				              </p:selectOneMenu>
+				              <p:message for="eduParent"/>
+				              
+				              <p:outputLabel value="Lugar de trabajo:"/>
+			                  <p:inputText value="#{studentController.parentPha.workPlace}" id="lugTraParent" required="true" requiredMessage="Ingrese la direccion"/>
+			                  <p:message for="lugTraParent"/>	
+			                  
+			                   <p:outputLabel value="Cargo que ocupa:"/>
+			                  <p:inputText value="#{studentController.parentPha.workCharge}" id="cargParent" required="true" requiredMessage="Ingrese la direccion"/>
+			                  <p:message for="cargParent"/>	
+			                  
+			                   <p:outputLabel value="Area/Profesión:"/>
+			                  <p:inputText value="#{studentController.parentPha.profesion}" id="profParent" required="true" requiredMessage="Ingrese la direccion"/>
+			                  <p:message for="profParent"/>	
+		                  		 
+               			</h:panelGrid>
+					</h:panelGrid>			
+					 
+					
+				</p:outputPanel>
+				<p:separator />
+				<p:outputPanel style="text-align: center;">
+					<p:column style="text-align: center;" >
+						<p:commandButton action="#{studentController.addParent()}"  rendered="#{(studentController.saveParent == 'S')}"
+							value="Agregar"  update="panelParent, :frmPrincipal:tblParent, :frmPrincipal:panelPerRetirar" styleClass="btn-info" 
+							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('varParent').hide()" />
+							
+						<p:commandButton action="#{studentController.updateParent()}" rendered="#{(studentController.saveParent == 'E')}"
+							value="Actualizar"  update="panelParent, :frmPrincipal:tblParent, :frmPrincipal:panelPerRetirar" styleClass="btn-info" 
+							oncomplete="if (args &amp;&amp; !args.validationFailed) PF('varParent').hide()" />
+							
+						<p:commandButton value="Cancelar"
+							immediate="true"
+							oncomplete="PF('varParent').hide()" />
+							
+					</p:column>
+				</p:outputPanel>
+			 </h:form>	
+		</p:dialog>
+</html>

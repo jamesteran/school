@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<p:dialog modal="true" dynamic="true"
+		widgetVar="widAdmTutoriaTitulacion" id="idDlgTutoriaTitulacion">
+
+		<f:facet name="header">
+			<p:outputLabel value="Agregar / Editar" />
+		</f:facet>
+
+		<p:outputPanel>
+
+			<h:panelGrid id="pgEstudiante" columns="2">
+				<h:panelGroup>
+					<b><h:outputText value="Buscar estudiante por:" /></b>
+				</h:panelGroup>
+				<p:selectOneRadio
+					value="#{d8TutoriasTitulacionController.opcionBusqueda}"
+					layout="pageDirection">
+					<f:selectItem itemLabel="Identificaci&#243;n" itemValue="1" />
+					<f:selectItem itemLabel="Apellidos y nombres" itemValue="2" />
+					<p:ajax execute="@this" update="pgEstudiante, pgEstudianteValores"
+						listener="#{d8TutoriasTitulacionController.limpiarVariables()}" />
+				</p:selectOneRadio>
+
+				<h:panelGroup id="idLabelCedulaEst">
+					<b> <h:outputText value="Identificaci&#243;n:"
+							rendered="#{d8TutoriasTitulacionController.opcionBusqueda==1}" /></b>
+				</h:panelGroup>
+				<h:panelGrid id="pgCedulaEstudianate" columns="2">
+					<h:inputText id="txtCedulaEstudiante"
+						value="#{d8TutoriasTitulacionController.cedulaEstudiante}"
+						onkeyup="mayusculas(this);" style="width:100px"
+						rendered="#{d8TutoriasTitulacionController.opcionBusqueda==1}"
+						maxlength="10">
+					</h:inputText>
+					<p:message for="txtCedulaEstudiante" />
+					<p:commandButton value="Buscar"
+						action="#{d8TutoriasTitulacionController.obtenerEstudiante()}"
+						update=" pgEstudianteValores, :#{p:component('dlgMsg')}"
+						rendered="#{d8TutoriasTitulacionController.opcionBusqueda==1}"
+						process="pgEstudiante" />
+				</h:panelGrid>
+
+				<h:panelGroup id="lblNombreEstudiante">
+					<b><h:outputText value="Apellidos y Nombres:"
+							rendered="#{d8TutoriasTitulacionController.opcionBusqueda==2}" /></b>
+				</h:panelGroup>
+				<h:panelGrid id="pgnombreEstudiante" columns="2">
+					<p:inputText id="txtNombreEstudiante" lang="es" styleClass="ute-upperCase"
+						value="#{d8TutoriasTitulacionController.nombreEstudiante}"
+						rendered="#{d8TutoriasTitulacionController.opcionBusqueda==2}">
+					</p:inputText>
+					<p:message for="txtNombreEstudiante" />
+					<p:commandButton
+						action="#{d8TutoriasTitulacionController.obtenerEstudiante()}"
+						value="Buscar" update="pgEstudiante" process="pgEstudiante"
+						rendered="#{d8TutoriasTitulacionController.opcionBusqueda==2}" />
+				</h:panelGrid>
+
+				<p:outputLabel value="Seleccione:" styleClass="textoOscuro"
+					rendered="#{d8TutoriasTitulacionController.opcionBusqueda==2}" />
+				<p:selectOneMenu
+					rendered="#{d8TutoriasTitulacionController.opcionBusqueda==2}"
+					value="#{d8TutoriasTitulacionController.cedulaSeleccionada}">
+					<f:selectItem itemLabel="#{tmpl['etiqueta.seleccione']}"
+						itemValue="#{null}" noSelectionOption="true" />
+					<f:selectItems
+						value="#{d8TutoriasTitulacionController.lstEstudiantes}"
+						var="detalle" itemLabel="#{detalle.cedula} - #{detalle.nombre}"
+						itemValue="#{detalle.cedula}" />
+					<p:ajax
+						listener="#{d8TutoriasTitulacionController.seleccionarEstudiante()}"
+						update="pgEstudianteValores" />
+				</p:selectOneMenu>
+			</h:panelGrid>
+
+			<h:panelGrid columns="2" id="pgEstudianteValores">
+				<p:outputLabel value="Nombre del Estudiante:"
+					styleClass="textoOscuro"
+					rendered="#{d8TutoriasTitulacionController.estudiante.valorTexto.length() > 0 and d8TutoriasTitulacionController.opcionBusqueda==1}" />
+				<p:outputLabel style="width:200"
+					rendered="#{d8TutoriasTitulacionController.estudiante.valorTexto.length() > 0 and d8TutoriasTitulacionController.opcionBusqueda==1}"
+					value="#{d8TutoriasTitulacionController.estudiante.valorTexto}" />
+				<p:outputLabel value="Título del Trabajo:" styleClass="textoOscuro" />
+				<p:inputTextarea styleClass="upperCase"
+					onkeyup="value=value.toUpperCase()"
+					value="#{d8TutoriasTitulacionController.tituloTrabajo.valor}"
+					maxlength="200" cols="40" rows="2" />
+			</h:panelGrid>
+
+
+			<br />
+			<center>
+				<p:commandButton value="Guardar"
+					action="#{d8TutoriasTitulacionController.guardarInformacionTutoriaTitulacion()}"
+					update=":#{p:component('tblTutoriaTitulacion')} :#{p:component('dlgMsg')}"
+					styleClass="botonGeneralAuto botonNormal">
+				</p:commandButton>
+
+				<p:commandButton value="#{tmpl['boton.cancelar']}"
+					oncomplete="PF('widAdmTutoriaTitulacion').hide();"
+					styleClass="ui-confirmdialog-no botonGeneralAuto botonNormal">
+					<p:ajax resetValues="true" />
+				</p:commandButton>
+			</center>
+
+		</p:outputPanel>
+	</p:dialog>
+</ui:composition>

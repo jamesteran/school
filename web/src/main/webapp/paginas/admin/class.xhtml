@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+  <body>
+
+    <ui:composition template="#{layoutMB.template}">
+
+      <ui:define name="title">
+        School Management - Admin - Seccion info
+      </ui:define>
+      <ui:define name="body">
+        <f:view>
+          <h:form id="inform">
+            <p:growl id="grl" showDetail="true"/>
+            <p:fieldset legend="Agregar Nueva Seccion" id="fld" style="font-size: 9pt;">
+              <p:panelGrid columns="2">
+                <p:column>
+                  <p:outputLabel value="Nombre de Seccion :" /><br/>
+                  <p:inputText id="cls" value="#{classBean.className}" required="true" requiredMessage="Field must not empty."/>                                    
+                </p:column>
+                <p:column>
+                  <p:outputLabel value=""/>
+                  <p:commandButton value="Guardar" action="#{classBean.insertClassName()}" styleClass="btn-primary"
+                  					icon="ui-icon-disk" update=":inform:grl,:inform:cls,:dtform:dt"/>
+                </p:column>
+              </p:panelGrid>
+            </p:fieldset>
+            </h:form>
+          <h:form id="dtform">
+            <p:dataTable id="dt" value="#{classBean.allClassName}" var="item" >
+              <p:column headerText="#." style="text-align: center;width: 20px;">                               
+                #{item.serialNo}
+              </p:column>
+              <p:column headerText="Seccion" style="text-align: center">                               
+                #{item.className}
+              </p:column>
+              <p:column headerText="Editar" style="text-align: center;width: 40px;">
+                <p:rowToggler/>
+              </p:column>
+              <p:column headerText="Opcion" style="width: 150px;">                                                                                     
+                <p:commandButton value="Eliminar" action="#{classBean.deleteData}" 
+                				icon="ui-icon-close" update=":inform:grl,:dtform:dt"  styleClass="btn-danger">
+                  <f:setPropertyActionListener target="#{classBean}" value="#{item}"/>
+                </p:commandButton>                        
+              </p:column>
+              <p:rowExpansion>
+                <p:fieldset legend="Editar Seccion" id="up">
+                  <p:panelGrid columns="2" style="width: 400px;">
+                    <p:outputLabel value="Seccion Anterior :" style="text-align: right;"/>
+                    <p:outputLabel value="#{item.className}"/>
+
+                    <p:outputLabel value="Neuva Seccion :"/>
+                    <p:inputText value="#{classBean.newClassName}" required="true" requiredMessage="Campo Requerido."/>
+
+                    <p:outputLabel value=""/>
+                    <p:commandButton value="Actualizar" action="#{classBean.updateData()}" 
+                    				update=":inform:grl,:dtform:dt" styleClass="btn-info">
+                      <f:setPropertyActionListener target="#{classBean.className}" value="#{item.className}"/>
+                    </p:commandButton>
+                  </p:panelGrid>
+                </p:fieldset>
+              </p:rowExpansion>
+            </p:dataTable>
+          </h:form>
+        </f:view>
+      </ui:define>
+
+    </ui:composition>
+
+  </body>
+</html>

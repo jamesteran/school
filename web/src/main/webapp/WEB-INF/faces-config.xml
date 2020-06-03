@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    JBoss, Home of Professional Open Source
+    Copyright 2013, Red Hat, Inc. and/or its affiliates, and individual
+    contributors by the @authors tag. See the copyright.txt in the
+    distribution for a full listing of individual contributors.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+    http://www.apache.org/licenses/LICENSE-2.0
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<!-- This file is not required if you don't need any extra configuration. -->
+<faces-config version="2.1" xmlns="http://java.sun.com/xml/ns/javaee"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+        http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd">
+
+   <!-- This descriptor activates the JSF 2.0 Servlet -->
+
+   <!-- Write your navigation rules here. You are encouraged to use CDI for 
+      creating @Named managed beans. -->
+   <!-- Navigation rules  start-->
+   <navigation-rule>
+    <from-view-id>/*</from-view-id>    
+    <navigation-case>
+      <from-outcome>adminhome</from-outcome>
+      <to-view-id>/paginas/admin/adminPanel.xhtml</to-view-id>
+      <redirect>     
+      </redirect>
+    </navigation-case>
+  </navigation-rule>
+  <navigation-rule>
+    <from-view-id>/*</from-view-id>    
+    <navigation-case>
+      <from-outcome>teacherhome</from-outcome>
+      <to-view-id>/paginas/teacher/teacherHome.xhtml</to-view-id>
+      <redirect>     
+      </redirect>
+    </navigation-case>
+  </navigation-rule>
+  <navigation-rule>
+    <from-view-id>/*</from-view-id>    
+    <navigation-case>
+      <from-outcome>studenthome</from-outcome>
+      <to-view-id>/paginas/student/studentHome.xhtml</to-view-id>
+      <redirect>     
+      </redirect>
+    </navigation-case>
+  </navigation-rule>
+  <navigation-rule>
+    <from-view-id>/index.xhtml</from-view-id>    
+    <navigation-case>
+      <from-outcome>logout</from-outcome>
+      <to-view-id>/index.xhtml</to-view-id>
+      <redirect>     
+      </redirect>
+    </navigation-case>
+  </navigation-rule>
+  
+  <navigation-rule>
+    <from-view-id>/paginas/admin/*</from-view-id>    
+    <navigation-case>
+      <from-outcome>logout</from-outcome>
+      <to-view-id>/log_in.xhtml</to-view-id>
+      <redirect>     
+      </redirect>
+    </navigation-case>
+  </navigation-rule>
+  <navigation-rule>
+    <from-view-id>/public/*</from-view-id>
+    <navigation-case>
+      <from-outcome>logout</from-outcome>
+      <to-view-id>/index.xhtml</to-view-id>
+      <redirect>     
+      </redirect>
+    </navigation-case>
+  </navigation-rule>
+  <navigation-rule>    
+    <from-view-id>/paginas/teacher/*</from-view-id>    
+    <navigation-case>
+      <from-outcome>logout</from-outcome>
+      <to-view-id>/log_in.xhtml</to-view-id>
+      <redirect>     
+      </redirect>
+    </navigation-case>
+  </navigation-rule>
+  <navigation-rule>
+    <from-view-id>/paginas/student/*</from-view-id>
+    <navigation-case>
+      <from-outcome>logout</from-outcome>
+      <to-view-id>/log_in.xhtml</to-view-id>
+      <redirect>     
+      </redirect>
+    </navigation-case>
+  </navigation-rule>
+  <navigation-rule>
+    <from-view-id>/paginas/admin/section.xhtml</from-view-id>
+    <navigation-case>
+      <from-outcome>marks</from-outcome>
+      <to-view-id>/paginas/admin/marks.xhtml</to-view-id>
+      <redirect>     
+      </redirect>
+    </navigation-case>
+  </navigation-rule>      
+   <!-- Navigation rules end-->
+      
+      
+      
+  <managed-bean>
+    <managed-bean-name>classBean</managed-bean-name>
+    <managed-bean-class>ec.edu.ecole.academic.ClassBean</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
+ <!--  <managed-bean>
+    <managed-bean-name>sectionBean</managed-bean-name>
+    <managed-bean-class>ec.edu.ecole.academic.SectionBean</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean> -->
+  <managed-bean>
+    <managed-bean-name>academicYearBean</managed-bean-name>
+    <managed-bean-class>ec.edu.ecole.academic.AcademicYearBean</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
+  <managed-bean>
+    <managed-bean-name>groupBean</managed-bean-name>
+    <managed-bean-class>ec.edu.ecole.academic.GroupBean</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
+  <managed-bean>
+    <managed-bean-name>subjectBean</managed-bean-name>
+    <managed-bean-class>ec.edu.ecole.academic.SubjectBean</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
+  <managed-bean>
+    <managed-bean-name>noticeBean</managed-bean-name>
+    <managed-bean-class>ec.edu.ecole.notice.NoticeBean</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
+  <!-- <managed-bean>
+    <managed-bean-name>userBean</managed-bean-name>
+    <managed-bean-class>ec.edu.ecole.user.UserBean</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean> -->
+  <managed-bean>
+    <managed-bean-name>userRoleBean</managed-bean-name>
+    <managed-bean-class>ec.edu.ecole.user.UserRoleBean</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
+  <managed-bean>
+    <managed-bean-name>teacherGradeBean</managed-bean-name>
+    <managed-bean-class>ec.edu.ecole.teacher.teacherGradeBean</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
+  <managed-bean>
+    <managed-bean-name>examTitleBean</managed-bean-name>
+    <managed-bean-class>ec.edu.ecole.exam.ExamTitleBean</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
+  <managed-bean>
+    <managed-bean-name>periodBean</managed-bean-name>
+    <managed-bean-class>ec.edu.ecole.timetable.PeriodBean</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
+  <managed-bean>
+    <managed-bean-name>classTimeTableBean</managed-bean-name>
+    <managed-bean-class>ec.edu.ecole.timetable.ClassTimeTableBean</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
+  <managed-bean>
+    <managed-bean-name>teacherSubjectAssignBean</managed-bean-name>
+    <managed-bean-class>ec.edu.ecole.timetable.TeacherSubjectAssignBean</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
+  <managed-bean>
+    <managed-bean-name>teacherBean</managed-bean-name>
+    <managed-bean-class>ec.edu.ecole.teacher.TeacherBean</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
+  <managed-bean>
+    <managed-bean-name>marksBean</managed-bean-name>
+    <managed-bean-class>ec.edu.ecole.exam.MarksBean</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
+  <managed-bean>
+    <managed-bean-name>studentBean</managed-bean-name>
+    <managed-bean-class>ec.edu.ecole.student.StudentBean</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
+  <managed-bean>
+    <managed-bean-name>studentContactBean</managed-bean-name>
+    <managed-bean-class>ec.edu.ecole.student.StudentContactBean</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
+  <managed-bean>
+    <managed-bean-name>studentRegistrationBean</managed-bean-name>
+    <managed-bean-class>ec.edu.ecole.student.StudentRegistrationBean</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
+  <managed-bean>
+    <managed-bean-name>studentRagistrationFeeBean</managed-bean-name>
+    <managed-bean-class>ec.edu.ecole.student.StudentRagistrationFeeBean</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
+  <managed-bean>
+    <managed-bean-name>studentAttendBean</managed-bean-name>
+    <managed-bean-class>ec.edu.ecole.academic.StudentAttendBean</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
+  <managed-bean>
+    <managed-bean-name>adminAccordionBean</managed-bean-name>
+    <managed-bean-class>ec.edu.ecole.util.AdminAccordionBean</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
+  <managed-bean>
+    <managed-bean-name>academicYearUpdate</managed-bean-name>
+    <managed-bean-class>ec.edu.ecole.academic.AcademicYearUpdate</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
+  <!-- <managed-bean>
+    <managed-bean-name>loginBean</managed-bean-name>
+    <managed-bean-class>ec.edu.ecole.user.LoginBean</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean> -->
+  <managed-bean>
+    <managed-bean-name>displayStudentInfoBean</managed-bean-name>
+    <managed-bean-class>ec.edu.ecole.student.DisplayStudentInfo</managed-bean-class>    
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
+  <managed-bean>
+    <managed-bean-name>newStudentBean</managed-bean-name>
+    <managed-bean-class>ec.edu.ecole.student.NewStudentBean</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
+  <managed-bean>
+    <managed-bean-name>groupUpdate</managed-bean-name>
+    <managed-bean-class>ec.edu.ecole.academic.GroupUpdate</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
+  <managed-bean>
+    <managed-bean-name>subjectUpdate</managed-bean-name>
+    <managed-bean-class>ec.edu.ecole.academic.SubjectUpdate</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
+  <managed-bean>
+    <managed-bean-name>examTitleUpdate</managed-bean-name>
+    <managed-bean-class>ec.edu.ecole.exam.ExamTitleUpdate</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
+  <managed-bean>
+    <managed-bean-name>marksUpdate</managed-bean-name>
+    <managed-bean-class>ec.edu.ecole.exam.MarksUpdate</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
+  <managed-bean>
+    <managed-bean-name>studentProfileUpdate</managed-bean-name>
+    <managed-bean-class>ec.edu.ecole.student.StudentProfileUpdate</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
+  <managed-bean>
+    <managed-bean-name>updateTeacherProfile</managed-bean-name>
+    <managed-bean-class>ec.edu.ecole.teacher.UpdateTeacherProfile</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
+    <managed-bean>
+        <managed-bean-name>indexGaleria</managed-bean-name>
+        <managed-bean-class>ec.edu.ecole.util.IndexGaleria</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>dipositBean</managed-bean-name>
+        <managed-bean-class>ec.edu.ecole.timetable.DipositBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>sectionUpdate</managed-bean-name>
+        <managed-bean-class>ec.edu.ecole.academic.SectionUpdate</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
+    <application>
+	    <!-- <resource-bundle>
+			<display-name>mensajes</display-name>
+			<base-name>ec.edu.ecole.messages</base-name>
+			<var>msg</var>
+		</resource-bundle> -->
+		<resource-bundle>
+			<base-name>ec.edu.ecole.labels</base-name>
+			<var>lbl</var>
+		</resource-bundle>
+	</application>
+
+</faces-config>
